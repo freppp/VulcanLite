@@ -1,4 +1,0 @@
-name: VulcanLite
-version: ${project.version}
-main: me.frep.vulcanlite.VulcanLitePlugin
-api-version: 1.16
