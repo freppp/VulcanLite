@@ -33,8 +33,8 @@ public enum VulcanLite {
     private final ExecutorService packetExecutor = Executors.newSingleThreadExecutor();
     private final ExecutorService alertExecutor = Executors.newSingleThreadExecutor();
 
-    private final PlayerDataManager playerDataManager = new PlayerDataManager();
     private final AlertManager alertManager = new AlertManager();
+    private final PlayerDataManager playerDataManager = new PlayerDataManager();
 
     public void start(final VulcanLitePlugin plugin) {
         this.plugin = plugin;

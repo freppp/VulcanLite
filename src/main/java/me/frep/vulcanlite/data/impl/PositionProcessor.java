@@ -1,6 +1,7 @@
 package me.frep.vulcanlite.data.impl;
 
 import me.frep.vulcanlite.data.PlayerData;
+import me.frep.vulcanlite.util.MathUtil;
 
 public class PositionProcessor {
 
@@ -13,6 +14,10 @@ public class PositionProcessor {
         this.data = data;
     }
 
+    /*
+     * Parse all of our position and movement data which will be accessed in our checks.
+     */
+
     public void handle(final double x, final double y, final double z) {
         this.x = x;
         this.y = y;
@@ -21,6 +26,7 @@ public class PositionProcessor {
         deltaX = x - lastX;
         deltaY = y - lastY;
         deltaZ = z - lastZ;
+        deltaXZ = MathUtil.magnitude(deltaX, deltaZ);
 
         lastX = x;
         lastY = y;
@@ -29,5 +35,6 @@ public class PositionProcessor {
         lastDeltaX = deltaX;
         lastDeltaY = deltaY;
         lastDeltaZ = deltaZ;
+        lastDeltaXZ = deltaXZ;
     }
 }

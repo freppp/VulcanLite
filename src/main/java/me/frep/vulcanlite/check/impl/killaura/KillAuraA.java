@@ -75,6 +75,10 @@ public class KillAuraA extends Check {
                 sent = false;
             }
 
+            /*
+             * Parse the lastFlying variable to the current time.
+             */
+
             lastFlying = now();
         } else if (packet.isUseEntity()) {
 

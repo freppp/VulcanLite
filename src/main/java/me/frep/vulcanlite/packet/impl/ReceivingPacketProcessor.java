@@ -22,7 +22,5 @@ public class ReceivingPacketProcessor {
                 data.getRotationProcessor().handle(wrapper.getYaw(), wrapper.getPitch());
             }
         }
-
-
     }
 }
