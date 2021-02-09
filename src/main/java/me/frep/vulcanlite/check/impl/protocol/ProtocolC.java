@@ -4,6 +4,7 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.abilities.Wrapped
 import me.frep.vulcanlite.check.Check;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
+import me.frep.vulcanlite.util.ServerUtil;
 
 /**
  * @author frep
@@ -30,20 +31,31 @@ public class ProtocolC extends Check {
             final WrappedPacketInAbilities wrapper = new WrappedPacketInAbilities(packet.getRawPacket());
 
             /*
-             * Whether or not the player is actually allowed to fly.
+             * Whether or not the player is actually allowed to fly. We don't want to run the check if they are.
              */
 
             final boolean allow = data.getPlayer().getAllowFlight();
 
-            check: {
+            if (allow) return;
+
+            high: {
+                if (!ServerUtil.isHigherThan1_9()) break high;
 
                 /*
-                 * If the player is actually allowed to fly, break, as we don't want to check anything in that case.
+                 * The wrapper is a little different above 1.9, so we just fail here.
                  */
 
-                if (allow) break check;
+                fail();
+            }
 
+            low: {
+                if (ServerUtil.isHigherThan1_9()) break low;
 
+                /*
+                 * WrappedPacketInAbilities#isFlightAllowed only works on lower than 1.9.
+                 */
+
+                if (wrapper.isFlightAllowed()) fail();
             }
         }
     }

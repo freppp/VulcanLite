@@ -1,6 +1,7 @@
 package me.frep.vulcanlite.packet.impl;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
+import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -21,6 +22,14 @@ public class ReceivingPacketProcessor {
 
                 data.getRotationProcessor().handle(wrapper.getYaw(), wrapper.getPitch());
             }
+
+            data.getCombatProcessor().handleFlying();
+        }
+
+        if (packet.isUseEntity()) {
+            final WrappedPacketInUseEntity wrapper = new WrappedPacketInUseEntity(packet.getRawPacket());
+
+            data.getCombatProcessor().handleUseEntity(wrapper);
         }
     }
 }

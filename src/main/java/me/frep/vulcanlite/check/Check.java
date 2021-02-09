@@ -68,6 +68,10 @@ public abstract class Check {
         return VulcanLite.INSTANCE.getTickManager().getTicks();
     }
 
+    public int hitTicks() {
+        return data.getCombatProcessor().getHitTicks();
+    }
+
     public long now() {
         return System.currentTimeMillis();
     }
