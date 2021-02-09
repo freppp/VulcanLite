@@ -14,8 +14,8 @@ public class NetworkManager extends PacketListenerDynamic {
 
     /*
      * We pretty much only listen to these two outbound packets, so we have a 'whitelist' to avoid having to loop through
-     * all of the checks for packets that we don't even use. The server sends a LOT of packets, so this is pretty helpful
-     * in helping performance and reducing CPU usage.
+     * all of the checks and swap threads for packets that we don't even use. The server sends a LOT of packets, so this
+     * is pretty helpful in helping performance and reducing CPU usage.
      */
 
     private final static ImmutableSet<Byte> SEND_WHITELIST = new ImmutableSet.Builder<Byte>()
@@ -58,7 +58,8 @@ public class NetworkManager extends PacketListenerDynamic {
     public void onPacketPlaySend(final PacketPlaySendEvent event) {
 
         /*
-         * We return if the packet isn't even going to be used at all to prevent unnecessary object creation.
+         * We return if the packet isn't even going to be used at all to prevent unnecessary object creation
+         * and handling the packet at all.
          */
 
         if (!SEND_WHITELIST.contains(event.getPacketId())) return;

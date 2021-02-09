@@ -2,6 +2,7 @@ package me.frep.vulcanlite.data.impl;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import lombok.Getter;
+import me.frep.vulcanlite.config.Config;
 import me.frep.vulcanlite.data.PlayerData;
 
 @Getter
