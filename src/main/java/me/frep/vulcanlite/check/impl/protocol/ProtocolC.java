@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.protocol;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.abilities.WrappedPacketInAbilities;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 import me.frep.vulcanlite.util.ServerUtil;
@@ -14,6 +16,7 @@ import me.frep.vulcanlite.util.ServerUtil;
  * and fly modules.
  */
 
+@CheckInfo(name = "Protocol", type = "C", complexType = "Abilities", category = CheckCategory.PLAYER, description = "Spoofed Abilities packets")
 public class ProtocolC extends Check {
 
     public ProtocolC(final PlayerData data) {

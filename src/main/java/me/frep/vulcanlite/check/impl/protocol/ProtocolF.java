@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.protocol;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.steervehicle.WrappedPacketInSteerVehicle;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -12,6 +14,7 @@ import me.frep.vulcanlite.packet.Packet;
  * Checks for too large or too small Steer Vehicle packets. Commonly used by disablers.
  */
 
+@CheckInfo(name = "Protocol", type = "F", complexType = "Vehicle", category = CheckCategory.PLAYER, description = "Invalid Steer Vehicle packets.")
 public class ProtocolF extends Check {
 
     public ProtocolF(final PlayerData data) {

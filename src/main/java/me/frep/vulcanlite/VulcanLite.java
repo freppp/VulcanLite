@@ -54,8 +54,6 @@ public enum VulcanLite {
 
         CheckManager.setup();
 
-
-
         pluginManager.registerEvents(new PlayerListener(), plugin);
 
         PacketEvents.get().registerListener(new NetworkManager(PacketEventPriority.NORMAL));

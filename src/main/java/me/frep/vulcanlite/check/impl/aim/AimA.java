@@ -1,6 +1,8 @@
 package me.frep.vulcanlite.check.impl.aim;
 
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -12,6 +14,7 @@ import me.frep.vulcanlite.packet.Packet;
  * in comparison to the deltaYaw.
  */
 
+@CheckInfo(name = "Aim", type = "A", complexType = "Ratio", category = CheckCategory.COMBAT, description = "Invalid rotation ratio")
 public class AimA extends Check {
 
     public AimA(final PlayerData data) {

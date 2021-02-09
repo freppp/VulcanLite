@@ -1,6 +1,8 @@
 package me.frep.vulcanlite.check.impl.protocol;
 
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -11,6 +13,7 @@ import me.frep.vulcanlite.packet.Packet;
  * In Minecraft, the player's pitch is always clamped between -90 and 90.
  */
 
+@CheckInfo(name = "Protocol", type = "A", complexType = "Pitch", category = CheckCategory.PLAYER, description = "Invalid pitch")
 public class ProtocolA extends Check {
 
     public ProtocolA(final PlayerData data) {

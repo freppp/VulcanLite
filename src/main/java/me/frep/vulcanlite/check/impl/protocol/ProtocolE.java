@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.protocol;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.helditemslot.WrappedPacketInHeldItemSlot;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -12,6 +14,7 @@ import me.frep.vulcanlite.packet.Packet;
  * Checks for duplicate Held Item Slot packets.
  */
 
+@CheckInfo(name = "Protocol", type = "E", complexType = "Hotbar", category = CheckCategory.PLAYER, description = "Duplicate HeldItemSlot packets")
 public class ProtocolE extends Check {
 
     private int lastSlot = -1;

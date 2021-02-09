@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.protocol;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -12,6 +14,7 @@ import me.frep.vulcanlite.packet.Packet;
  * Player's cant interact with themselves - enough said.
  */
 
+@CheckInfo(name = "Protocol", type = "D", complexType = "Interact", category = CheckCategory.PLAYER, description = "Self interact")
 public class ProtocolD extends Check {
 
     public ProtocolD(final PlayerData data) {

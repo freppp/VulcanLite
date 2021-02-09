@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.protocol;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -12,6 +14,7 @@ import me.frep.vulcanlite.packet.Packet;
  * The client has to send a position update once every 20 ticks, even if the player isn't moving.
  */
 
+@CheckInfo(name = "Protocol", type = "B", complexType = "Sequence", category = CheckCategory.PLAYER, description = "Invalid Flying packet sequence")
 public class ProtocolB extends Check {
 
     private int ticks;

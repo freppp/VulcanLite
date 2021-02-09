@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.killaura;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -14,6 +16,7 @@ import me.frep.vulcanlite.packet.Packet;
  * IDs more than once within a single client tick.
  */
 
+@CheckInfo(name = "Aim", type = "B", complexType = "Multi", category = CheckCategory.COMBAT, description = "Attacked two entities at once")
 public class KillAuraB extends Check {
 
     private int ticks, lastEntityId;

@@ -2,6 +2,8 @@ package me.frep.vulcanlite.check.impl.killaura;
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import me.frep.vulcanlite.check.Check;
+import me.frep.vulcanlite.check.annotation.CheckInfo;
+import me.frep.vulcanlite.check.enums.CheckCategory;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.packet.Packet;
 
@@ -14,6 +16,7 @@ import me.frep.vulcanlite.packet.Packet;
  * into account and send them within the same tick, which is something we can easily detect.
  */
 
+@CheckInfo(name = "Kill Aura", type = "A", complexType = "Post", category = CheckCategory.COMBAT, description = "Post UseEntity packets")
 public class KillAuraA extends Check {
 
     private long lastFlying;
