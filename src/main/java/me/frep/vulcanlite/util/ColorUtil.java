@@ -1,6 +1,7 @@
 package me.frep.vulcanlite.util;
 
 import lombok.experimental.UtilityClass;
+import me.frep.vulcanlite.config.Config;
 import org.bukkit.ChatColor;
 
 /**
@@ -14,10 +15,10 @@ public class ColorUtil {
 
     /**
      * @param string - The string you want to translate.
-     * @return - The string formatted with color codes.
+     * @return - The string formatted with color codes with the prefix automatically translated and replaced.
      */
 
     public String translate(final String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+        return ChatColor.translateAlternateColorCodes('&', string.replaceAll("%prefix%", Config.Values.PREFIX));
     }
 }

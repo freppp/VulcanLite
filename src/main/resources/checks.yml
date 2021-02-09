@@ -1,0 +1,88 @@
+checks:
+  combat:
+    killaura:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      b:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+    aim:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+  movement:
+    speed:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+  player:
+    protocol:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      b:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      c:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      d:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      e:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      f:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'

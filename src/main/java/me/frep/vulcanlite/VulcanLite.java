@@ -4,6 +4,8 @@ import io.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.event.priority.PacketEventPriority;
 import lombok.Getter;
 import me.frep.vulcanlite.alert.AlertManager;
+import me.frep.vulcanlite.check.manager.CheckManager;
+import me.frep.vulcanlite.config.Checks;
 import me.frep.vulcanlite.config.Config;
 import me.frep.vulcanlite.data.manager.PlayerDataManager;
 import me.frep.vulcanlite.listener.PlayerListener;
@@ -11,6 +13,7 @@ import me.frep.vulcanlite.network.NetworkManager;
 import me.frep.vulcanlite.packet.impl.ReceivingPacketProcessor;
 import me.frep.vulcanlite.packet.impl.SendingPacketProcessor;
 import me.frep.vulcanlite.tick.TickManager;
+import me.frep.vulcanlite.util.CacheUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
@@ -42,12 +45,20 @@ public enum VulcanLite {
 
         assert plugin != null : "Error while starting Vulcan Lite!";
 
+        Config.initialize();
+        Config.Values.update();
+
+        CacheUtil.cacheCheckValues();
+
+        Checks.initialize();
+
+        CheckManager.setup();
+
+
+
         pluginManager.registerEvents(new PlayerListener(), plugin);
 
         PacketEvents.get().registerListener(new NetworkManager(PacketEventPriority.NORMAL));
-
-        Config.initialize();
-        Config.Values.update();
 
         tickManager.start();
     }

@@ -10,13 +10,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 
-@UtilityClass
-public class Checks {
+public class Messages {
 
-    private final String fileName = "checks";
+    private final String fileName = "messages";
 
     private FileConfiguration config;
 
@@ -79,40 +80,35 @@ public class Checks {
         }
     }
 
-    public String getString(final String path) {
+    private String getString(final String path) {
         return config.getString(path);
     }
 
-    public int getInt(final String path) {
+    private int getInt(final String path) {
         return config.getInt(path);
     }
 
-    public boolean getBoolean(final String path) {
-        return config.getBoolean(path);
-    }
-
-    public List<String> getStringList(final String path) {
+    private List<String> getStringList(final String path) {
         return config.getStringList(path);
     }
 
-    public long getLong(final String path) {
+    private long getLong(final String path) {
         return config.getLong(path);
     }
 
-    public double getDouble(final String path) {
+    private double getDouble(final String path) {
         return config.getDouble(path);
     }
 
     @UtilityClass
     public class Values {
 
-        public final Map<String, Boolean> ENABLED_CHECKS = new HashMap<>();
-        public final Map<String, Boolean> PUNISHABLE = new HashMap<>();
-        public final Map<String, Boolean> BROADCAST_PUNISHMENT = new HashMap<>();
+        public void update() {
+            try {
 
-        public final Map<String, Integer> ALERT_INTERVAL = new HashMap<>();
-        public final Map<String, Integer> MAX_VIOLATIONS = new HashMap<>();
-
-        public final Map<String, List<String>> PUNISHMENT_COMMANDS = new HashMap<>();
+            } catch (final Exception exception) {
+                VulcanLite.INSTANCE.getPlugin().getLogger().log(Level.SEVERE, "Could not configuration file!");
+            }
+        }
     }
 }

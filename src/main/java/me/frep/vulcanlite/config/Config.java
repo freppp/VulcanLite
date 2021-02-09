@@ -82,28 +82,29 @@ public class Config {
         }
     }
 
-    private String getString(final String path) {
+    public String getString(final String path) {
         return config.getString(path);
     }
 
-    private int getInt(final String path) {
+    public int getInt(final String path) {
         return config.getInt(path);
     }
 
-    private List<String> getStringList(final String path) {
+    public List<String> getStringList(final String path) {
         return config.getStringList(path);
     }
 
-    private long getLong(final String path) {
+    public long getLong(final String path) {
         return config.getLong(path);
     }
 
-    private double getDouble(final String path) {
+    public double getDouble(final String path) {
         return config.getDouble(path);
     }
 
     @UtilityClass
     public class Values {
+
         public String PREFIX;
 
         public void update() {
