@@ -176,7 +176,7 @@ public class MathUtil {
     /**
      *
      * @param data - The sample of clicks you want to get the cps from
-     * @return - The cps using the average as a method of calculation
+     * @return - The CPS using the average as a method of calculation
      */
     public double getCps(final Collection<? extends Number> data) {
         final double average = data.stream().mapToDouble(Number::doubleValue).average().orElse(0.0);

@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import me.frep.vulcanlite.VulcanLite;
 import me.frep.vulcanlite.data.PlayerData;
+import me.frep.vulcanlite.packet.Packet;
+
+import java.util.Objects;
 
 @Getter
 public abstract class Check {
@@ -15,18 +18,34 @@ public abstract class Check {
 
     private double buffer;
 
-    public final String className = getClass().getSimpleName();
-
     public Check(final PlayerData data) {
         this.data = data;
     }
 
-    public void fail(final Object info) {
+    public abstract void handle(final Packet packet);
 
+    protected void fail(final double multiple, final Object info) {
+        multiplyBuffer(multiple);
+
+        VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
+                VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, Objects.toString(info)));
     }
 
-    public void fail() {
+    protected void fail() {
+        VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
+                VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, ""));
+    }
 
+    protected void fail(final Object info) {
+        VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
+                VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, Objects.toString(info)));
+    }
+
+    protected void fail(final double multiple) {
+        multiplyBuffer(multiple);
+
+        VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
+                VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, ""));
     }
 
     public double increaseBuffer() {
@@ -35,6 +54,10 @@ public abstract class Check {
 
     public double decreaseBufferBy(final double amount) {
         return buffer = Math.max(0, buffer - amount);
+    }
+
+    public void multiplyBuffer(final double multiplier) {
+        buffer *= multiplier;
     }
 
     public void resetBuffer() {
