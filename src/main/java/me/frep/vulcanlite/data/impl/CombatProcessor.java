@@ -4,11 +4,14 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.Wrapped
 import lombok.Getter;
 import me.frep.vulcanlite.config.Config;
 import me.frep.vulcanlite.data.PlayerData;
+import org.bukkit.entity.Entity;
 
 @Getter
 public class CombatProcessor {
 
     private final PlayerData data;
+
+    private Entity target, lastTarget;
 
     private int hitTicks;
 
@@ -23,6 +26,13 @@ public class CombatProcessor {
          */
 
         if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK) return;
+
+        /*
+         * Parse our target and lastTarget variables.
+         */
+
+        lastTarget = target == null ? wrapper.getEntity() : target;
+        target = wrapper.getEntity();
 
         /*
          * Reset the hitTicks variable so that we can track when the player was recently attacking.

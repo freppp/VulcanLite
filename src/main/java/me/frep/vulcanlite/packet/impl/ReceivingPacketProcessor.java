@@ -24,6 +24,8 @@ public class ReceivingPacketProcessor {
             }
 
             data.getCombatProcessor().handleFlying();
+            data.getActionProcessor().handleFlying(wrapper);
+
         }
 
         if (packet.isUseEntity()) {

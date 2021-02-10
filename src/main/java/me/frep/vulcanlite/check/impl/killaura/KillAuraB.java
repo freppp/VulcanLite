@@ -16,7 +16,7 @@ import me.frep.vulcanlite.packet.Packet;
  * IDs more than once within a single client tick.
  */
 
-@CheckInfo(name = "Aim", type = "B", complexType = "Multi", category = CheckCategory.COMBAT, description = "Attacked two entities at once")
+@CheckInfo(name = "Kill Aura", type = "B", complexType = "Multi", category = CheckCategory.COMBAT, description = "Attacked two entities at once")
 public class KillAuraB extends Check {
 
     private int ticks, lastEntityId;

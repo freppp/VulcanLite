@@ -1,8 +1,10 @@
 package me.frep.vulcanlite.data.impl;
 
+import lombok.Getter;
 import me.frep.vulcanlite.data.PlayerData;
 import me.frep.vulcanlite.util.MathUtil;
 
+@Getter
 public class PositionProcessor {
 
     private final PlayerData data;

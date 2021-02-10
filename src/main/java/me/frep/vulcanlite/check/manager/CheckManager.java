@@ -5,6 +5,7 @@ import me.frep.vulcanlite.check.Check;
 import me.frep.vulcanlite.check.impl.aim.AimA;
 import me.frep.vulcanlite.check.impl.killaura.KillAuraA;
 import me.frep.vulcanlite.check.impl.killaura.KillAuraB;
+import me.frep.vulcanlite.check.impl.killaura.KillAuraC;
 import me.frep.vulcanlite.check.impl.protocol.*;
 import me.frep.vulcanlite.config.Checks;
 import me.frep.vulcanlite.data.PlayerData;
@@ -25,6 +26,7 @@ public class CheckManager {
                 AimA.class,
                 KillAuraA.class,
                 KillAuraB.class,
+                KillAuraC.class,
                 ProtocolA.class,
                 ProtocolB.class,
                 ProtocolC.class,

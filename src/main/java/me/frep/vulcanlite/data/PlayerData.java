@@ -1,10 +1,7 @@
 package me.frep.vulcanlite.data;
 
 import lombok.Getter;
-import me.frep.vulcanlite.data.impl.CombatProcessor;
-import me.frep.vulcanlite.data.impl.PositionProcessor;
-import me.frep.vulcanlite.data.impl.RotationProcessor;
-import me.frep.vulcanlite.data.impl.VelocityProcessor;
+import me.frep.vulcanlite.data.impl.*;
 import org.bukkit.entity.Player;
 
 @Getter
@@ -16,6 +13,7 @@ public class PlayerData {
     private final PositionProcessor positionProcessor = new PositionProcessor(this);
     private final VelocityProcessor velocityProcessor = new VelocityProcessor(this);
     private final CombatProcessor combatProcessor = new CombatProcessor(this);
+    private final ActionProcessor actionProcessor = new ActionProcessor(this);
 
     public PlayerData(final Player player) {
         this.player = player;

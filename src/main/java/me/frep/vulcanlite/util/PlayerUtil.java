@@ -27,4 +27,32 @@ public class PlayerUtil {
 
         return 0;
     }
+
+    /**
+     * @param player - The player you want to read the effect from
+     * @param base - The base speed you want to account for.
+     * @return - The 'base' parameter adjusted to account for Speed potions and walk speed.
+     */
+
+    public double getBaseSpeed(final Player player, final double base) {
+        return base + getPotionLevel(player, PotionEffectType.SPEED) * 0.062f + (Math.abs(player.getWalkSpeed() - .2F) * 3.5);
+    }
+
+    /**
+     * @param player - The player you want to get the max speed from.
+     * @return - The base max ground speed (.288) adjusted accounting for speed potions and walk speed.
+     */
+
+    public double getBaseGroundSpeed(final Player player) {
+        return getBaseSpeed(player, .288);
+    }
+
+    /**
+     * @param player - The player you want to get the max speed from.
+     * @return - The base max air speed ~(.36) adjusted accounting for speed potions and walk speed.
+     */
+
+    public double getBaseAirSpeed(final Player player) {
+        return getBaseSpeed(player, .36);
+    }
 }
