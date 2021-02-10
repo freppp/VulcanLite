@@ -8,6 +8,15 @@ import me.frep.vulcanlite.packet.Packet;
 import me.frep.vulcanlite.util.PlayerUtil;
 import org.bukkit.entity.Player;
 
+/**
+ * @author frep
+ * @since 02/10/2021
+ *
+ * A very simple, yet very effective, Keep Sprint check. We are just making sure that the player
+ * decelerates after they attack a player. If not, it's a strong indication they're using Kill Aura
+ * with Keep Sprint (this should flag a lot of auras, since using aura without keep sprint is no fun :().
+ */
+
 @CheckInfo(name = "Kill Aura", type = "C", complexType = "Keep Sprint", category = CheckCategory.COMBAT, description = "Not decelerating after attacking")
 public class KillAuraC extends Check {
 
