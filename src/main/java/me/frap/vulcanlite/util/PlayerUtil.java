@@ -55,4 +55,14 @@ public class PlayerUtil {
     public double getBaseAirSpeed(final Player player) {
         return getBaseSpeed(player, .36);
     }
+
+    /**
+     *
+     * @param player - The player you want to check.
+     * @return - Whether or not the player is holding a sword.
+     */
+
+    public boolean isHoldingSword(final Player player) {
+        return player.getItemInHand().getType().toString().contains("SWORD");
+    }
 }

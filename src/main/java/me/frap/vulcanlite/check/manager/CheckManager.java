@@ -31,10 +31,9 @@ public class CheckManager {
                 ProtocolD.class,
                 ProtocolE.class,
                 ProtocolF.class,
+                ProtocolG.class,
         };
     }
-
-    private final List<Check> checks = new ArrayList<>();
 
     public static List<Check> loadChecks(final PlayerData data) {
         final List<Check> checkList = new ArrayList<>();

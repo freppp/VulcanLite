@@ -14,7 +14,7 @@ import me.frap.vulcanlite.packet.Packet;
  * Player's cant interact with themselves - enough said.
  */
 
-@CheckInfo(name = "Protocol", type = "D", complexType = "Interact", category = CheckCategory.PLAYER, description = "Self interact")
+@CheckInfo(name = "Protocol", type = "D", complexType = "Self Interact", category = CheckCategory.PLAYER, description = "Self interact")
 public class ProtocolD extends Check {
 
     public ProtocolD(final PlayerData data) {
