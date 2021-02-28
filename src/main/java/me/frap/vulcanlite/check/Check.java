@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.SneakyThrows;
 import me.frap.vulcanlite.VulcanLite;
 import me.frap.vulcanlite.data.PlayerData;
+import me.frap.vulcanlite.exempt.type.ExemptType;
 import me.frap.vulcanlite.packet.Packet;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public abstract class Check {
 
         VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
                 VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, ""));
+    }
+
+    protected boolean isExempt(final ExemptType exemptType) {
+        return data.getExemptProcessor().isExempt(exemptType);
+    }
+
+    protected boolean isExempt(final ExemptType... exemptTypes) {
+        return data.getExemptProcessor().isExempt(exemptTypes);
     }
 
     public double increaseBuffer() {

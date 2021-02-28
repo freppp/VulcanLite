@@ -21,7 +21,7 @@ public class TickManager implements Runnable {
     private long lastTick, tickDelay, lastLagSpike;
 
     /*
-     * 
+     * Starting the task.
      */
 
     public void start() {

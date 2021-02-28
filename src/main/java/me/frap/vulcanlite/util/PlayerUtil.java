@@ -1,5 +1,9 @@
 package me.frap.vulcanlite.util;
 
+import com.destroystokyo.paper.ClientOption;
+import io.github.retrooper.packetevents.PacketEvents;
+import io.github.retrooper.packetevents.event.priority.PacketEventPriority;
+import io.github.retrooper.packetevents.utils.player.ClientVersion;
 import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -15,7 +19,7 @@ public class PlayerUtil {
      */
 
     public int getPotionLevel(final Player player, final PotionEffectType effect) {
-        if (player.hasPotionEffect(effect)) return 0;
+        if (!player.hasPotionEffect(effect)) return 0;
 
         final int effectId = effect.getId();
 
@@ -26,6 +30,16 @@ public class PlayerUtil {
         }
 
         return 0;
+    }
+
+    /**
+     *
+     * @param player - The player who you want to get the client version from
+     * @return - The player's client version
+     */
+
+    public ClientVersion getClientVersion(final Player player) {
+        return PacketEvents.get().getPlayerUtils().getClientVersion(player);
     }
 
     /**

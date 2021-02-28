@@ -110,6 +110,11 @@ public class KillAuraA extends Check {
                  * however it may vary slightly depending on the connection of the player. If it's less than 10,
                  * it's a strong indication they're using a really bad/old Kill Aura which sends the motion
                  * and attack in the same tick or they lagged very badly (will get filtered out above).
+                 *
+                 * What we're trying to do here is basically validate if the packet set was
+                 * sent before or after the flying packet. The flying packet is always the last packet that
+                 * gets sent, meaning if any packet is sent after it just being sent, or right when it's sent,
+                 * that packet's order has been messed with in some way which should not happen because of TCP.
                  */
 
                 if (delay < 10) {

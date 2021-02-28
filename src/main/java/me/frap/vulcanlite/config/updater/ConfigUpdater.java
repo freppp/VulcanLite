@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class ConfigUpdater {
 
-    public void update(Plugin plugin, String resourceName, File toUpdate, List<String> ignoredSections) throws IOException {
+    public void update(final Plugin plugin, final String resourceName, final File toUpdate, final List<String> ignoredSections) throws IOException {
         final BufferedReader newReader = new BufferedReader(new InputStreamReader(plugin.getResource(resourceName), StandardCharsets.UTF_8));
         final List<String> newLines = newReader.lines().collect(Collectors.toList());
         newReader.close();

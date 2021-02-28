@@ -52,6 +52,11 @@ public class AimA extends Check {
              */
 
             if (invalid) {
+
+                /*
+                 * If the conditions are met, increase the buffer.
+                 */
+
                 if (increaseBuffer() > 4) {
 
                     /*

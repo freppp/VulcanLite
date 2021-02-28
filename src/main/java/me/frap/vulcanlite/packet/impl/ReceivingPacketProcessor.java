@@ -1,5 +1,6 @@
 package me.frap.vulcanlite.packet.impl;
 
+import io.github.retrooper.packetevents.packetwrappers.play.in.entityaction.WrappedPacketInEntityAction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import me.frap.vulcanlite.data.PlayerData;
@@ -11,21 +12,17 @@ public class ReceivingPacketProcessor {
         if (packet.isFlying()) {
             final WrappedPacketInFlying wrapper = new WrappedPacketInFlying(packet.getRawPacket());
 
-            position: {
-                if (!wrapper.isPosition()) break position;
-
-                data.getPositionProcessor().handle(wrapper.getX(), wrapper.getY(), wrapper.getZ());
-            }
-
             look: {
                 if (!wrapper.isLook()) break look;
 
                 data.getRotationProcessor().handle(wrapper.getYaw(), wrapper.getPitch());
             }
 
+            data.getPositionProcessor().handleFlying(wrapper);
+
+            data.getVelocityProcessor().handleFlying();
             data.getCombatProcessor().handleFlying();
             data.getActionProcessor().handleFlying();
-
         }
 
         if (packet.isBlockPlace()) {
@@ -36,6 +33,12 @@ public class ReceivingPacketProcessor {
             final WrappedPacketInUseEntity wrapper = new WrappedPacketInUseEntity(packet.getRawPacket());
 
             data.getCombatProcessor().handleUseEntity(wrapper);
+        }
+
+        if (packet.isEntityAction()) {
+            final WrappedPacketInEntityAction wrapper = new WrappedPacketInEntityAction(packet.getRawPacket());
+
+            data.getActionProcessor().handleEntityAction(wrapper);
         }
 
         /*

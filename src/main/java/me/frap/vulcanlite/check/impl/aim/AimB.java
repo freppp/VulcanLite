@@ -53,6 +53,11 @@ public class AimB extends Check {
              */
 
             if (invalid) {
+
+                /*
+                 * If the conditions are meant, increase the buffer.
+                 */
+
                 if (increaseBuffer() > 4) {
 
                     /*

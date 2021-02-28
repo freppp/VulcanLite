@@ -12,7 +12,7 @@ public class VelocityProcessor {
 
     private double velocityX, velocityY, velocityZ, velocityXZ;
 
-    private int lastVelocity;
+    private int lastVelocity, sinceVelocityTicks;
 
     public VelocityProcessor(final PlayerData data) {
         this.data = data;
@@ -26,5 +26,11 @@ public class VelocityProcessor {
         velocityXZ = MathUtil.magnitude(velocityX, velocityZ);
 
         lastVelocity = VulcanLite.INSTANCE.getTickManager().getTicks();
+
+        sinceVelocityTicks = 0;
+    }
+
+    public void handleFlying() {
+        ++sinceVelocityTicks;
     }
 }

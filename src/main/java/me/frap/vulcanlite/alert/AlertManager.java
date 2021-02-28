@@ -25,6 +25,6 @@ public class AlertManager {
     }
 
     public void handleAlert(final PlayerData data, final Check check, final String info) {
-
+        
     }
 }
