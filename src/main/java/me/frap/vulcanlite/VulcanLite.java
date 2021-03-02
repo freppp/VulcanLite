@@ -3,9 +3,11 @@ package me.frap.vulcanlite;
 import io.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.event.priority.PacketEventPriority;
 import lombok.Getter;
+import me.frap.vulcanlite.command.impl.AlertsCommand;
 import me.frap.vulcanlite.config.Checks;
 import me.frap.vulcanlite.config.Config;
 import me.frap.vulcanlite.data.manager.PlayerDataManager;
+import me.frap.vulcanlite.punishment.PunishmentManager;
 import me.frap.vulcanlite.tick.TickManager;
 import me.frap.vulcanlite.util.CacheUtil;
 import me.frap.vulcanlite.alert.AlertManager;
@@ -38,6 +40,7 @@ public enum VulcanLite {
     private final ExecutorService alertExecutor = Executors.newSingleThreadExecutor();
 
     private final AlertManager alertManager = new AlertManager();
+    private final PunishmentManager punishmentManager = new PunishmentManager();
     private final PlayerDataManager playerDataManager = new PlayerDataManager();
 
     public void start(final VulcanLitePlugin plugin) {
@@ -48,9 +51,11 @@ public enum VulcanLite {
         Config.initialize();
         Config.Values.update();
 
+        Checks.initialize();
+
         CacheUtil.cacheCheckValues();
 
-        Checks.initialize();
+        getPlugin().getCommand("alerts").setExecutor(new AlertsCommand());
 
         CheckManager.setup();
 

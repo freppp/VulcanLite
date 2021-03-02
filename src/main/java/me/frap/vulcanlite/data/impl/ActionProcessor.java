@@ -18,6 +18,7 @@ public class ActionProcessor {
 
     public void handleEntityAction(final WrappedPacketInEntityAction wrapper) {
         sendingAction = true;
+
         switch (wrapper.getAction()) {
             case START_SPRINTING:
                 sprinting = true;

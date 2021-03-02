@@ -12,6 +12,10 @@ public class ServerUtil {
         return PacketEvents.get().getServerUtils().getVersion();
     }
 
+    public double getTps() {
+        return PacketEvents.get().getServerUtils().getTPS();
+    }
+
     public boolean isHigherThan1_9() {
         return getServerVersion().isHigherThanOrEquals(ServerVersion.v_1_9);
     }

@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import me.frap.vulcanlite.VulcanLite;
+import me.frap.vulcanlite.check.annotation.CheckInfo;
+import me.frap.vulcanlite.check.enums.CheckCategory;
+import me.frap.vulcanlite.config.Checks;
 import me.frap.vulcanlite.data.PlayerData;
 import me.frap.vulcanlite.exempt.type.ExemptType;
 import me.frap.vulcanlite.packet.Packet;
@@ -16,6 +19,8 @@ import java.util.Objects;
 public abstract class Check {
 
     protected final PlayerData data;
+
+    private final String className = getClass().getSimpleName();
 
     @Setter
     private int vl;
@@ -80,11 +85,46 @@ public abstract class Check {
         return VulcanLite.INSTANCE.getTickManager().getTicks();
     }
 
+    public String getName() {
+        return getCheckInfo().name();
+    }
+
+    public String getComplexType() {
+        return getCheckInfo().complexType();
+    }
+
+    public String getType() {
+        return getCheckInfo().type();
+    }
+
+    public CheckCategory getCheckCategory() {
+        return getCheckInfo().category();
+    }
+
+    public CheckInfo getCheckInfo() {
+        if (getClass().isAnnotationPresent(CheckInfo.class)) {
+            return getClass().getAnnotation(CheckInfo.class);
+        } else {
+            System.err.println("CheckInfo annotation hasn't been added to the class " + getClass().getSimpleName() + "!");
+        }
+        return null;
+    }
+
+    public int getMaxVl() {
+        return Checks.Values.MAX_VIOLATIONS.get(className);
+    }
+
+
     public int hitTicks() {
         return data.getCombatProcessor().getHitTicks();
     }
 
+
     public long now() {
         return System.currentTimeMillis();
+    }
+
+    public int getAlertInterval() {
+        return Checks.Values.ALERT_INTERVAL.get(className);
     }
 }

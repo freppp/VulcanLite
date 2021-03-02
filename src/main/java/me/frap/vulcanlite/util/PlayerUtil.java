@@ -43,6 +43,29 @@ public class PlayerUtil {
     }
 
     /**
+     *
+     * @param player - The player who you want to get the client version from
+     * @return - The player's client version as a readable string
+     */
+
+    public String getClientVersionToString(final Player player) {
+        if (getClientVersion(player) == null) {
+            return "Unresolved";
+        }
+        return getClientVersion(player).toString().replaceAll("v_", "").replaceAll("_", ".");
+    }
+
+    /**
+     *
+     * @param player - The player who you want to get the ping from
+     * @return - The player's ping as an integer
+     */
+
+    public int getPing(final Player player) {
+        return PacketEvents.get().getPlayerUtils().getNMSPing(player);
+    }
+
+    /**
      * @param player - The player you want to read the effect from
      * @param base - The base speed you want to account for.
      * @return - The 'base' parameter adjusted to account for Speed potions and walk speed.

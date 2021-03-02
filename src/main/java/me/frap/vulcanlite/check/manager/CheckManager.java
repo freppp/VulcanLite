@@ -3,6 +3,7 @@ package me.frap.vulcanlite.check.manager;
 import lombok.Getter;
 import me.frap.vulcanlite.check.impl.aim.*;
 import me.frap.vulcanlite.check.impl.protocol.*;
+import me.frap.vulcanlite.check.impl.speed.SpeedA;
 import me.frap.vulcanlite.config.Checks;
 import me.frap.vulcanlite.check.Check;
 import me.frap.vulcanlite.check.impl.killaura.*;
@@ -32,6 +33,9 @@ public class CheckManager {
                 ProtocolE.class,
                 ProtocolF.class,
                 ProtocolG.class,
+                ProtocolH.class,
+                ProtocolI.class,
+                SpeedA.class,
         };
     }
 

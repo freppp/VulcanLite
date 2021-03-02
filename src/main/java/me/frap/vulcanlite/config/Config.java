@@ -85,6 +85,10 @@ public class Config {
         return config.getString(path);
     }
 
+    public boolean getBoolean(final String path) {
+        return config.getBoolean(path);
+    }
+
     public int getInt(final String path) {
         return config.getInt(path);
     }
@@ -104,11 +108,20 @@ public class Config {
     @UtilityClass
     public class Values {
 
-        public String PREFIX;
+        public String PREFIX, ALERTS_FORMAT, ALERTS_CLICK_COMMAND;
+
+        public boolean ALERTS_TO_CONSOLE, ASYNC_ALERTS;
+
+        public List<String> ALERTS_HOVER_MESSAGE;
 
         public void update() {
             try {
                 PREFIX = getString("prefix");
+                ALERTS_FORMAT = getString("alerts.format");
+                ASYNC_ALERTS = getBoolean("settings.async-alerts");
+                ALERTS_TO_CONSOLE = getBoolean("settings.alerts-to-console");
+                ALERTS_HOVER_MESSAGE = getStringList("alerts.hover-message");
+                ALERTS_CLICK_COMMAND = getString("alerts.click-command");
             } catch (final Exception exception) {
                 VulcanLite.INSTANCE.getPlugin().getLogger().log(Level.SEVERE, "Could not configuration file!");
             }

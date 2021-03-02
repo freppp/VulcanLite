@@ -16,7 +16,7 @@ public class PositionProcessor {
 
     private boolean clientOnGround, serverOnGround;
 
-    private int sinceFlightTicks;
+    private int sinceFlightTicks, clientGroundTicks, clientAirTicks;
 
     private World world;
 
@@ -66,6 +66,10 @@ public class PositionProcessor {
     }
 
     private void handleFlyingTicks() {
+        if (clientOnGround) ++clientGroundTicks;
+        else clientGroundTicks = 0;
 
+        if (!clientOnGround) ++clientAirTicks;
+        else clientAirTicks = 0;
     }
 }

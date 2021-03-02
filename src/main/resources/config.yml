@@ -1,1 +1,20 @@
-prefix: '&cVulcan &8/ '
+prefix: '&cVulcanLite &8/'
+
+alerts:
+  format: '%prefix% &c%player% &7failed &b%check% &7%dev%(&bType %type%&7)%dev% &7x%vl%'
+  console-format: '[Vulcan] %player% failed %check% %dev%(Type %type%)%dev% &7%vl%x'
+  hover-message:
+    - '&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%version%'
+    - ''
+    - '&7Description:'
+    - '&7%description%'
+    - ''
+    - '&7Information:'
+    - '&7%info%'
+    - ''
+    - '&7Click to teleport to &b%player%&7.'
+  click-command: '/tp %player%'
+
+settings:
+  alerts-to-console: true
+  async-alerts: false

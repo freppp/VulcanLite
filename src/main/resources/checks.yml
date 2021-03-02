@@ -110,3 +110,19 @@ checks:
         max-violations: 10
         punishment-commands:
           - 'kick %player% &c[Vulcan] Unfair Advantage'
+      h:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      i:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        alert-interval: 1
+        max-violations: 10
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'

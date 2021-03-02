@@ -1,6 +1,7 @@
 package me.frap.vulcanlite.listener;
 
 import me.frap.vulcanlite.VulcanLite;
+import me.frap.vulcanlite.config.Config;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
