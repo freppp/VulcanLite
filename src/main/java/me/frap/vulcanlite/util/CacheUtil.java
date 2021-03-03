@@ -10,19 +10,7 @@ import java.util.List;
 @UtilityClass
 public class CacheUtil {
 
-    public void resetCheckValues() {
-        Checks.Values.ENABLED_CHECKS.clear();
-        Checks.Values.PUNISHABLE.clear();
-        Checks.Values.BROADCAST_PUNISHMENT.clear();
-
-        Checks.Values.ALERT_INTERVAL.clear();
-        Checks.Values.MAX_VIOLATIONS.clear();
-
-        Checks.Values.PUNISHMENT_COMMANDS.clear();
-    }
-
     public void cacheCheckValues() {
-        resetCheckValues();
         for (final Class clazz : CheckManager.CHECKS) {
             final String className = clazz.getSimpleName();
 

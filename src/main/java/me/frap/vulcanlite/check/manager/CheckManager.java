@@ -40,16 +40,16 @@ public class CheckManager {
     }
 
     public static List<Check> loadChecks(final PlayerData data) {
-        final List<Check> checkList = new ArrayList<>();
+        final List<Check> checks = new ArrayList<>();
         for (final Constructor<?> constructor : CONSTRUCTORS) {
             try {
-                checkList.add((Check) constructor.newInstance(data));
+                checks.add((Check) constructor.newInstance(data));
             } catch (final Exception exception) {
                 System.err.println("Failed to load checks for " + data.getPlayer().getName());
                 exception.printStackTrace();
             }
         }
-        return checkList;
+        return checks;
     }
 
     public static void setup() {

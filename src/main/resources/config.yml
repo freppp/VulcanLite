@@ -18,3 +18,4 @@ alerts:
 settings:
   alerts-to-console: true
   async-alerts: false
+  toggle-alerts-on-join: true

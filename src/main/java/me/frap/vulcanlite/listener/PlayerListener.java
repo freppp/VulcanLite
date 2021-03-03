@@ -15,6 +15,12 @@ public class PlayerListener implements Listener {
         final Player player = event.getPlayer();
 
         VulcanLite.INSTANCE.getPlayerDataManager().create(player);
+
+        alerts: {
+            if (!Config.Values.TOGGLE_ALERTS_ON_JOIN || !player.hasPermission("vulcanlite.alerts")) break alerts;
+
+            VulcanLite.INSTANCE.getAlertManager().toggleAlerts(player);
+        }
     }
 
     @EventHandler
@@ -22,5 +28,7 @@ public class PlayerListener implements Listener {
         final Player player = event.getPlayer();
 
         VulcanLite.INSTANCE.getPlayerDataManager().remove(player);
+
+        VulcanLite.INSTANCE.getAlertManager().getAlertsEnabled().remove(player);
     }
 }

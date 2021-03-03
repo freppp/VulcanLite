@@ -5,6 +5,7 @@ import me.frap.vulcanlite.VulcanLite;
 import me.frap.vulcanlite.check.Check;
 import me.frap.vulcanlite.config.Checks;
 import me.frap.vulcanlite.config.Config;
+import me.frap.vulcanlite.config.Messages;
 import me.frap.vulcanlite.data.PlayerData;
 import me.frap.vulcanlite.util.ColorUtil;
 import me.frap.vulcanlite.util.PlayerUtil;
@@ -34,10 +35,10 @@ public class AlertManager {
     public void toggleAlerts(final Player player) {
         if (alertsEnabled.contains(player)) {
             alertsEnabled.remove(player);
-            player.sendMessage("alerts disabled!");
+            player.sendMessage(ColorUtil.translate(Messages.Values.ALERTS_DISABLED));
         } else {
             alertsEnabled.add(player);
-            player.sendMessage("alerts enabled");
+            player.sendMessage(ColorUtil.translate(Messages.Values.ALERTS_ENABLED));
         }
     }
 
@@ -105,6 +106,13 @@ public class AlertManager {
                     .replaceAll("%check%", check.getCheckInfo().name()));
 
             alertMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hoverMessage).create()));
+
+            /*
+             * Sending ChatComponents isn't thread safe and may result in some issues, especially on servers connected
+             * via Bungee. Have seen some people say they get kicked whenever they're sent an alert when they're on
+             * Bungee so this fixes that. It's a toggleable option so if you aren't on Bungee you can save a little
+             * performance.
+             */
 
             if (Config.Values.ASYNC_ALERTS) {
                 alertsEnabled.forEach(player -> player.spigot().sendMessage(alertMessage));

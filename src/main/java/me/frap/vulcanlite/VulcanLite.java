@@ -6,6 +6,7 @@ import lombok.Getter;
 import me.frap.vulcanlite.command.impl.AlertsCommand;
 import me.frap.vulcanlite.config.Checks;
 import me.frap.vulcanlite.config.Config;
+import me.frap.vulcanlite.config.Messages;
 import me.frap.vulcanlite.data.manager.PlayerDataManager;
 import me.frap.vulcanlite.punishment.PunishmentManager;
 import me.frap.vulcanlite.tick.TickManager;
@@ -52,8 +53,10 @@ public enum VulcanLite {
         Config.Values.update();
 
         Checks.initialize();
+        Checks.Values.update();
 
-        CacheUtil.cacheCheckValues();
+        Messages.initialize();
+        Messages.Values.update();
 
         getPlugin().getCommand("alerts").setExecutor(new AlertsCommand());
 

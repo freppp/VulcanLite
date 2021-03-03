@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
+@UtilityClass
 public class Messages {
 
     private final String fileName = "messages";
@@ -80,32 +81,35 @@ public class Messages {
         }
     }
 
-    private String getString(final String path) {
+    public String getString(final String path) {
         return config.getString(path);
     }
 
-    private int getInt(final String path) {
+    public int getInt(final String path) {
         return config.getInt(path);
     }
 
-    private List<String> getStringList(final String path) {
+    public List<String> getStringList(final String path) {
         return config.getStringList(path);
     }
 
-    private long getLong(final String path) {
+    public long getLong(final String path) {
         return config.getLong(path);
     }
 
-    private double getDouble(final String path) {
+    public double getDouble(final String path) {
         return config.getDouble(path);
     }
 
     @UtilityClass
     public class Values {
 
+        public String ALERTS_ENABLED, ALERTS_DISABLED;
+
         public void update() {
             try {
-
+                ALERTS_ENABLED = getString("alerts-enabled");
+                ALERTS_DISABLED = getString("alerts-disabled");
             } catch (final Exception exception) {
                 VulcanLite.INSTANCE.getPlugin().getLogger().log(Level.SEVERE, "Could not configuration file!");
             }

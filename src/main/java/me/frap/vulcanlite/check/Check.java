@@ -15,30 +15,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
+@Getter @Setter
 public abstract class Check {
 
     protected final PlayerData data;
 
-    private final String className = getClass().getSimpleName();
+    private final String className;
 
-    @Setter
+    private final CheckInfo checkInfo;
+
     private int vl;
 
     private double buffer;
 
     public Check(final PlayerData data) {
         this.data = data;
+
+        if (getClass().isAnnotationPresent(CheckInfo.class)) {
+            this.checkInfo = getClass().getAnnotation(CheckInfo.class);
+        } else {
+            System.err.println("CheckInfo annotation was not found for the class " + getClass().getSimpleName() +"!");
+            this.checkInfo = null;
+        }
+
+        this.className = getClass().getSimpleName();
     }
 
     public abstract void handle(final Packet packet);
-
-    protected void fail(final double multiple, final Object info) {
-        multiplyBuffer(multiple);
-
-        VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
-                VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, Objects.toString(info)));
-    }
 
     protected void fail() {
         VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
@@ -57,8 +60,11 @@ public abstract class Check {
                 VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, ""));
     }
 
-    protected boolean isExempt(final ExemptType exemptType) {
-        return data.getExemptProcessor().isExempt(exemptType);
+    protected void fail(final double multiple, final Object info) {
+        multiplyBuffer(multiple);
+
+        VulcanLite.INSTANCE.getAlertExecutor().execute(() ->
+                VulcanLite.INSTANCE.getAlertManager().handleAlert(data, this, Objects.toString(info)));
     }
 
     protected boolean isExempt(final ExemptType... exemptTypes) {
@@ -81,50 +87,39 @@ public abstract class Check {
         buffer = 0;
     }
 
-    public int ticks() {
-        return VulcanLite.INSTANCE.getTickManager().getTicks();
-    }
-
     public String getName() {
-        return getCheckInfo().name();
+        return checkInfo.name();
     }
 
     public String getComplexType() {
-        return getCheckInfo().complexType();
+        return checkInfo.complexType();
     }
 
     public String getType() {
-        return getCheckInfo().type();
+        return checkInfo.type();
     }
 
     public CheckCategory getCheckCategory() {
-        return getCheckInfo().category();
-    }
-
-    public CheckInfo getCheckInfo() {
-        if (getClass().isAnnotationPresent(CheckInfo.class)) {
-            return getClass().getAnnotation(CheckInfo.class);
-        } else {
-            System.err.println("CheckInfo annotation hasn't been added to the class " + getClass().getSimpleName() + "!");
-        }
-        return null;
+        return checkInfo.category();
     }
 
     public int getMaxVl() {
         return Checks.Values.MAX_VIOLATIONS.get(className);
     }
 
-
     public int hitTicks() {
         return data.getCombatProcessor().getHitTicks();
     }
 
-
-    public long now() {
-        return System.currentTimeMillis();
-    }
-
     public int getAlertInterval() {
         return Checks.Values.ALERT_INTERVAL.get(className);
+    }
+
+    public String getConfigFriendlyName() {
+        return getName().toLowerCase().replaceAll(" ", "");
+    }
+
+    public String getConfigFriendlyType() {
+        return getType().toLowerCase();
     }
 }

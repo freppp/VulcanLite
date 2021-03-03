@@ -1,0 +1,2 @@
+alerts-enabled: '%prefix% &aAlerts enabled!'
+alerts-disabled: '%prefix% &cAlerts disabled!'

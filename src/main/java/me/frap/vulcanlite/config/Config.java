@@ -108,9 +108,9 @@ public class Config {
     @UtilityClass
     public class Values {
 
-        public String PREFIX, ALERTS_FORMAT, ALERTS_CLICK_COMMAND;
+        public String PREFIX, ALERTS_FORMAT, ALERTS_CLICK_COMMAND, ALERTS_CONSOLE_FORMAT;
 
-        public boolean ALERTS_TO_CONSOLE, ASYNC_ALERTS;
+        public boolean ALERTS_TO_CONSOLE, ASYNC_ALERTS, TOGGLE_ALERTS_ON_JOIN;
 
         public List<String> ALERTS_HOVER_MESSAGE;
 
@@ -121,7 +121,9 @@ public class Config {
                 ASYNC_ALERTS = getBoolean("settings.async-alerts");
                 ALERTS_TO_CONSOLE = getBoolean("settings.alerts-to-console");
                 ALERTS_HOVER_MESSAGE = getStringList("alerts.hover-message");
+                ALERTS_CONSOLE_FORMAT = getString("alerts.console-format");
                 ALERTS_CLICK_COMMAND = getString("alerts.click-command");
+                TOGGLE_ALERTS_ON_JOIN = getBoolean("settings.toggle-alerts-on-join");
             } catch (final Exception exception) {
                 VulcanLite.INSTANCE.getPlugin().getLogger().log(Level.SEVERE, "Could not configuration file!");
             }

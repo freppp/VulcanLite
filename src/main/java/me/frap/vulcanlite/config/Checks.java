@@ -3,6 +3,7 @@ package me.frap.vulcanlite.config;
 import lombok.experimental.UtilityClass;
 import me.frap.vulcanlite.config.updater.ConfigUpdater;
 import me.frap.vulcanlite.VulcanLite;
+import me.frap.vulcanlite.util.CacheUtil;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -114,5 +115,18 @@ public class Checks {
         public final Map<String, Integer> MAX_VIOLATIONS = new HashMap<>();
 
         public final Map<String, List<String>> PUNISHMENT_COMMANDS = new HashMap<>();
+
+        public void update() {
+            ENABLED_CHECKS.clear();
+            PUNISHABLE.clear();
+            BROADCAST_PUNISHMENT.clear();
+
+            ALERT_INTERVAL.clear();
+            MAX_VIOLATIONS.clear();
+
+            PUNISHMENT_COMMANDS.clear();
+
+            CacheUtil.cacheCheckValues();
+        }
     }
 }

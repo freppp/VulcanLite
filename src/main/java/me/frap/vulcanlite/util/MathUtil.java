@@ -125,7 +125,7 @@ public class MathUtil {
         double sum = 0.0;
         int count = 0;
 
-        for (Number number : data) {
+        for (final Number number : data) {
             sum += number.doubleValue();
             ++count;
         }
