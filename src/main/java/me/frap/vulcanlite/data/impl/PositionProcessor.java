@@ -16,7 +16,7 @@ public class PositionProcessor {
 
     private boolean clientOnGround, serverOnGround;
 
-    private int sinceFlightTicks, clientGroundTicks, clientAirTicks;
+    private int sinceFlightTicks, clientGroundTicks, clientAirTicks, sinceFishingRodTicks;
 
     private World world;
 
@@ -61,6 +61,8 @@ public class PositionProcessor {
     }
 
     private void handlePositionTicks() {
+        ++sinceFishingRodTicks;
+
         if (data.getPlayer().getAllowFlight()) sinceFlightTicks = 0;
         else ++sinceFlightTicks;
     }
@@ -71,5 +73,9 @@ public class PositionProcessor {
 
         if (!clientOnGround) ++clientAirTicks;
         else clientAirTicks = 0;
+    }
+
+    public void handleFishingRod() {
+        sinceFishingRodTicks = 0;
     }
 }

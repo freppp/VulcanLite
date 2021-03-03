@@ -35,6 +35,7 @@ public class CheckManager {
                 ProtocolG.class,
                 ProtocolH.class,
                 ProtocolI.class,
+                ProtocolJ.class,
                 SpeedA.class,
         };
     }

@@ -8,6 +8,7 @@ import me.frap.vulcanlite.config.Checks;
 import me.frap.vulcanlite.config.Config;
 import me.frap.vulcanlite.config.Messages;
 import me.frap.vulcanlite.data.manager.PlayerDataManager;
+import me.frap.vulcanlite.event.EventProcessor;
 import me.frap.vulcanlite.punishment.PunishmentManager;
 import me.frap.vulcanlite.tick.TickManager;
 import me.frap.vulcanlite.util.CacheUtil;
@@ -40,9 +41,9 @@ public enum VulcanLite {
     private final ExecutorService packetExecutor = Executors.newSingleThreadExecutor();
     private final ExecutorService alertExecutor = Executors.newSingleThreadExecutor();
 
-    private final AlertManager alertManager = new AlertManager();
     private final PunishmentManager punishmentManager = new PunishmentManager();
     private final PlayerDataManager playerDataManager = new PlayerDataManager();
+    private final AlertManager alertManager = new AlertManager();
 
     public void start(final VulcanLitePlugin plugin) {
         this.plugin = plugin;
@@ -63,6 +64,7 @@ public enum VulcanLite {
         CheckManager.setup();
 
         pluginManager.registerEvents(new PlayerListener(), plugin);
+        pluginManager.registerEvents(new EventProcessor(), plugin);
 
         PacketEvents.get().registerListener(new NetworkManager(PacketEventPriority.NORMAL));
 
