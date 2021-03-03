@@ -46,14 +46,14 @@ public class ProtocolH extends Check {
 
             final boolean exempt = isExempt(ExemptType.SERVER_VERSION, ExemptType.CLIENT_VERSION);
 
-            handle: {
+            check: {
 
                 /*
                  * We only want to fail the check for attack packets and they didn't swing and they aren't exempt
                  * , so this takes care of it all in one nice statement.
                  */
 
-                if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK || exempt || swung) break handle;
+                if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK || exempt || swung) break check;
 
 
                 /*

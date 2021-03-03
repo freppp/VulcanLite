@@ -52,13 +52,13 @@ public class ProtocolI extends Check {
 
             final boolean exempt = isExempt(ExemptType.CLIENT_VERSION, ExemptType.SERVER_VERSION);
 
-            handle: {
+            check: {
 
                 /*
                  * We only want to fail the check for attack packets and they are sending an action, so this does it all in one statement.
                  */
 
-                if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK || exempt || !action) break handle;
+                if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK || exempt || !action) break check;
 
                 fail();
             }

@@ -29,12 +29,13 @@ public class KillAuraA extends Check {
     @Override
     public void handle(final Packet packet) {
         if (packet.isFlying()) {
+            final long now = System.currentTimeMillis();
 
             /*
              * Calculate the delay between the current and last flying packet.
              */
 
-            final long delay = now() - lastFlying;
+            final long delay = now - lastFlying;
 
             /*
              * The boolean 'sent' is set to true when the delay between the FLying and Use Entity packet is less than
@@ -82,7 +83,7 @@ public class KillAuraA extends Check {
              * Parse the lastFlying variable to the current time.
              */
 
-            lastFlying = now();
+            lastFlying = now;
         } else if (packet.isUseEntity()) {
 
             /*
@@ -91,19 +92,19 @@ public class KillAuraA extends Check {
 
             final WrappedPacketInUseEntity wrapper = new WrappedPacketInUseEntity(packet.getRawPacket());
 
-            handle: {
+            check: {
 
                 /*
                  * We only want to check if it's an attack packet, not interact or another action.
                  */
 
-                if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK) break handle;
+                if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK) break check;
 
                 /*
                  * Calculate the delay between the sending of this Use Entity packet and the last flying packet.
                  */
 
-                final long delay = now() - lastFlying;
+                final long delay = System.currentTimeMillis()- lastFlying;
 
                 /*
                  * The delay between PacketPlayInFlying and PacketPlayInUseEntity should always be around ~50ms,
