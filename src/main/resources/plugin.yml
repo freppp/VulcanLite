@@ -1,8 +1,0 @@
-name: VulcanLite
-version: ${project.version}
-main: me.frap.vulcanlite.VulcanLitePlugin
-api-version: 1.13
-commands:
-  alerts:
-    description: Toggle on and off Vulcan's alert messages.
-    usage: /<command>
